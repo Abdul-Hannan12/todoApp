@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+body{
+    background-color: rgb(240 233 233 / 53%);
+    font-family: 'Raleway', sans-serif;
+}
+
+.delBtn{
+    cursor: pointer;
+}
+
+.card{
+    border-radius: 25px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
