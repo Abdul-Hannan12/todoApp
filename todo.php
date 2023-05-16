@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/todo.css">
+    <link rel="stylesheet" href="css/todo.css">
     <title>TODO</title>
 </head>
 <body>
@@ -40,7 +40,13 @@
                         ?>
                         <tr>
                             <td > <?php echo $todo['content']; ?></td>
-                            <td class="text-end"><span class="delBtn text-danger mx-5">X</span></td>
+                            <td class="text-end">
+                              <form action="api.php" method="POST">
+                                  <input class="delBtn text-danger mx-5 bg-transparent border-0 p-0" type="submit" value="X">
+                                  <input type="hidden" name="id" value="<?php echo $todo['id']; ?>">
+                                  <input type="hidden" name="MODE" value="remove">
+                              </form>
+                            </td>
                         </tr>
                         <?php
                             }

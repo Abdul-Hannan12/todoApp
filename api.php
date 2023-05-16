@@ -66,6 +66,17 @@ if(isset($_POST['register'])){
     }
 
     if(isset($_POST['MODE']) && $_POST['MODE'] == 'remove'){
+        $id = $_POST['id'];
+
+        $sql = "DELETE FROM todos WHERE id='$id'";
+        $result = mysqli_query($conn, $sql);
+        if($result){
+            header("Location: todo.php?msg=del");
+            exit();
+        }else{
+            header("Location: todo.php?msg=error");
+            exit();
+        }
     }
 
 ?>
