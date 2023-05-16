@@ -1,6 +1,14 @@
 
 <?php 
 
+    session_start();
+    if(isset($_SESSION['logged_in']) ){
+      if($_SESSION['logged_in'] == true){  
+        header("Location: todo.php");
+        exit();
+      }
+    }
+
     if(isset($_GET['msg']) && $_GET['msg'] == "user"){
         echo '<div class="alert alert-danger" role="alert" style="position: absolute; top: 25;"> Incorrect Email or Password! </div>';
     }

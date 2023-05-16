@@ -1,6 +1,7 @@
 <?php
 
 $conn = new mysqli("localhost","root","","todo");
+session_start();
 
 if(isset($_POST['register'])){
     $name = $_POST['name'];
@@ -37,11 +38,34 @@ if(isset($_POST['register'])){
         exit();
     }else{
         $row = mysqli_fetch_assoc($result);
-        $_SESSION['userid'] = $row['uid'];
-        $_SESSION['isLoggedIn'] = true;
+        $_SESSION['user_id'] = $row['uid'];
+        $_SESSION['logged_in'] = true;
         header("Location: todo.php");
         exit();
     }
-}
+  }
+
+    if(isset($_POST['logout'])){
+        session_destroy();
+        header("Location: index.php");
+    }
+
+    if(isset($_POST['MODE']) && $_POST['MODE'] == 'add'){
+        $text = $_POST['text'];
+        $uid = $_SESSION['user_id'];
+
+        $sql = "INSERT into todos (content, uid) VALUES ('$text', '$uid')";
+        $result = mysqli_query($conn, $sql);
+        if($result){
+            header("Location: todo.php?msg=success");
+            exit();
+        }else{
+            header("Location: todo.php?msg=error");
+            exit();
+        }
+    }
+
+    if(isset($_POST['MODE']) && $_POST['MODE'] == 'remove'){
+    }
 
 ?>
